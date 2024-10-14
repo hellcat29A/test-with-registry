@@ -1,0 +1,33 @@
+image: node:18.18.2
+
+clone:
+  depth: full
+
+pipelines:
+  default:
+    - step:
+        name: Install Dependencies for Monorepo
+        caches:
+          - node
+        script:
+          - echo "//registry.npmjs.org/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
+          - npm install
+    - step:
+        name: "Test and Publish Packages"
+        script:
+          - npm install -g npm@9.8.1
+          - npm install
+          - npm run build
+          - git stash
+          - |
+            if [[ "$BITBUCKET_BRANCH" =~ .*renovate/.* ]]; then
+              echo "Stopping step for 'renovate' branch"
+              exit 0
+            fi
+          - echo "Running lerna publish..."
+          - npm run lerna:all
+
+definitions:
+  caches:
+    node: ~/.npm
+    sonar: ~/.sonar/cache
