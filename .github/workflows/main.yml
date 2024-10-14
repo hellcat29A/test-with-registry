@@ -32,6 +32,16 @@ jobs:
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
           npm install
 
+      - name: Clean up uncommitted changes
+        run: git checkout -- . && git clean -fd
+
+      - name: Commit package-lock.json
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add package-lock.json
+          git commit -m "Update package-lock.json" || echo "No changes to commit"
+
       - name: Build
         run: npm run build
 
