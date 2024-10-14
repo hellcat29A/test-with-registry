@@ -18,18 +18,9 @@ jobs:
         with:
           node-version: "18"
 
-      - name: Set npm Global Directory
-        run: |
-          mkdir -p ~/.npm-global
-          npm config set prefix '~/.npm-global'
-          echo 'export PATH=$HOME/.npm-global/bin:$PATH' >> $GITHUB_ENV
-
-      - name: Install npm
-        run: npm install -g npm@9.8.1
-
       - name: Install Dependencies
         run: |
-          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
           npm install
 
       - name: Configure Git
@@ -37,14 +28,6 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/hellcat29A/test-with-registry.git
-
-      - name: Clean up uncommitted changes
-        run: git checkout -- . && git clean -fd
-
-      - name: Commit package-lock.json
-        run: |
-          git add package-lock.json
-          git commit -m "Update package-lock.json" || echo "No changes to commit"
 
       - name: Build
         run: npm run build
