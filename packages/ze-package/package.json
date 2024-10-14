@@ -1,0 +1,27 @@
+{
+  "name": "@hellcat29a/creative-name",
+  "version": "0.0.10",
+  "type": "module",
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "exports": {
+    "./logic": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "devDependencies": {
+    "typescript": "latest"
+  },
+  "keywords": [],
+  "author": "hellcat29A",
+  "license": "MIT",
+  "description": ""
+}
