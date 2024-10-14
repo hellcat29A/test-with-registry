@@ -29,6 +29,11 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/hellcat29A/test-with-registry.git
 
+      - name: Commit Changes
+        run: |
+          git add package-lock.json .turbo/
+          git commit -m "Update package-lock.json and .turbo directory" || echo "No changes to commit"
+
       - name: Build
         run: npm run build
 
