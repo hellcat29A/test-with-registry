@@ -32,13 +32,17 @@ jobs:
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
           npm install
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/hellcat29A/test-with-registry.git
+
       - name: Clean up uncommitted changes
         run: git checkout -- . && git clean -fd
 
       - name: Commit package-lock.json
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
           git add package-lock.json
           git commit -m "Update package-lock.json" || echo "No changes to commit"
 
