@@ -1,56 +1,21 @@
-name: CI
-
+name: Publish
 on:
   push:
     branches:
-      - main
-      - "renovate/*" # Adjust this based on your branch strategy
-  pull_request:
-    branches:
-      - main
-
+      - master
 jobs:
-  install:
+  publish:
+    name: Publish NPM Packages
+    
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
         with:
-          node-version: "18"
-
-      - name: Configure npm authentication
-        run: echo "//registry.npmjs.org/:_authToken=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" > ~/.npmrc
-
-      - name: Install Dependencies
-        run: npm install
-
-  test_and_publish:
-    runs-on: ubuntu-latest
-    needs: install
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "18"
-
-      - name: Install npm
-        run: npm install -g npm@9.8.1
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Build Project
-        run: npm run build
-
-
-      - name: Stash git changes
-        run: git stash || echo "No changes to stash"
-
-      - name: Run Lerna
-        run: npm run lerna:all
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - run: git config --global user.email "bhiri22@gmail.com"
+      - run: git config --global user.name "hellcat29a"
+      - run: npm run updated
+        env:
+          NODE_AUTH_TOKEN: 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
