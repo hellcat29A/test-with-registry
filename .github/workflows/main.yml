@@ -22,7 +22,7 @@ jobs:
           node-version: "18"
 
       - name: Configure npm authentication
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+        run: echo "//registry.npmjs.org/:_authToken=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" > ~/.npmrc
 
       - name: Install Dependencies
         run: npm install
