@@ -16,6 +16,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: git config --global user.email "bhiri22@gmail.com"
       - run: git config --global user.name "hellcat29a"
+      - name: Create ~/.npmrc filerun: | echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
       - run: npm run updated
         env:
           NODE_AUTH_TOKEN: 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
