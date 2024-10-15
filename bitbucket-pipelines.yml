@@ -20,6 +20,9 @@ pipelines:
           - npm run build
           - ls
           - cat .npmrc
+          # Configure Git with username and email
+          - git config --global user.email "bhiri22@gmail.com"
+          - git config --global user.name "hellcat29a"
           - git stash
           - echo "Running lerna publish..."
           - npm run lerna:all
