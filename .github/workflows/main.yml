@@ -2,13 +2,16 @@ name: Publish
 on:
   push:
     branches:
-      - master
+      - main
+      - "renovate/*" # Adjust this based on your branch strategy
+  pull_request:
+    branches:
+      - main
 jobs:
   publish:
     name: Publish NPM Packages
     runs-on: ubuntu-latest
     steps:
-    
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
