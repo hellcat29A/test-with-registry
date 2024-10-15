@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-      - "renovate/*" # Adjust this based on your branch strategy
+      - "renovate/*"
   pull_request:
     branches:
       - main
@@ -33,11 +33,11 @@ jobs:
         run: |
           echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
 
-      - name: Authenticate with GitHub
+      - name: Authenticate with GitHub using PAT
         run: |
           git remote set-url origin https://x-access-token:${{ secrets.TOKEN_GITHUB }}@github.com/hellcat29A/test-with-registry.git
 
       - name: Run Lerna
         run: npm run lerna:all
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
