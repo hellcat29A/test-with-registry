@@ -18,6 +18,9 @@ export const zeFunction = () => {
   console.log("added this new line");
   console.log("added this new line");
   console.log("added this new line");
+
+  console.log("added this new line");
+  console.log("added this new line");
   console.log("added this new line");
 
   console.log("added this new line");
