@@ -23,11 +23,17 @@ jobs:
 
       - name: Build Project
         run: npm run build
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "bhiri22@gmail.com"
+          git config --global user.name "@hellcat29a"
+
       - name: Create ~/.npmrc file
         run: |
           echo "//registry.npmjs.org/:_authToken=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" > ~/.npmrc
+
       - name: Run Lerna
         run: npm run lerna:all
-
         env:
           NODE_AUTH_TOKEN: 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
