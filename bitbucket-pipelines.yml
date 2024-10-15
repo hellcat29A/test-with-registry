@@ -18,12 +18,9 @@ pipelines:
           - npm install -g npm@9.8.1
           - npm install
           - npm run build
+          - ls
+          - cat .npmrc
           - git stash
-          - |
-            if [[ "$BITBUCKET_BRANCH" =~ .*renovate/.* ]]; then
-              echo "Stopping step for 'renovate' branch"
-              exit 0
-            fi
           - echo "Running lerna publish..."
           - npm run lerna:all
 
