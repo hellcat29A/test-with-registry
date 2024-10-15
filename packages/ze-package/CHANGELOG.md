@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.11 (2024-10-15)
+
+**Note:** Version bump only for package @hellcat29a/creative-name
+
 ## [0.0.10](http://bitbucket.org/achraf-workspace/turbo-test/compare/@hellcat29a/new-package@0.0.9...@hellcat29a/new-package@0.0.10) (2024-10-14)
 
 **Note:** Version bump only for package @hellcat29a/new-package

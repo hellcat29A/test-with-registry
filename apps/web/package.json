@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
@@ -9,14 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@repo/ui": "^0.0.2",
+    "@repo/ui": "^0.0.3",
     "next": "14.2.6",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "@repo/eslint-config": "^0.0.2",
-    "@repo/typescript-config": "^0.0.2",
+    "@repo/eslint-config": "^0.0.3",
+    "@repo/typescript-config": "^0.0.3",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
